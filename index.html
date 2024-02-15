@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Referencial de SQL - David Coutinho</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="script.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Referencial de SQL</h1>
+        <nav>
+            <ul>
+                <li><a href="#tipos-de-dados">Tipos de Dados</a></li>
+                <li><a href="#indices">Índices</a></li>
+                <li><a href="#views">Views</a></li>
+                <li><a href="#comandos">Comandos</a></li>
+                <li><a href="#joins">Join</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section >
+        <h2>Introdução</h2>
+        <p>Este referencial de SQL foi criado para fornecer uma visão geral sobre os comandos e técnicas mais comuns utilizados no MySQL 7, um dos Sistemas de Gestão de Base de Dados (SGBD) mais populares e amplamente usados. Cada secção deste guia aborda diferentes aspectos do MySQL 7, desde a criação e manipulação de dados até conceitos avançados como índices, vistas e junções. Seja você um iniciante em SQL ou alguém à procura de aperfeiçoar os seus conhecimentos, este referencial serve como um recurso valioso para compreender e aplicar eficazmente os comandos SQL no contexto do MySQL 7.</p>
+    </section>
+
+    <!-- Seção Tipos de Dados -->
+<section id="tipos-de-dados">
+    <h2>Tipos de Dados no MySQL 7</h2>
+    <p>O MySQL oferece uma variedade de tipos de dados para atender a diferentes necessidades de armazenamento de dados, incluindo tipos numéricos, de data e hora, string e espaciais. Escolher o tipo de dado correto para uma coluna é crucial para otimizar o desempenho do banco de dados.</p>
+    
+    <!-- Subseção Tipos Numéricos -->
+    <h3>Tipos Numéricos</h3>
+    <ul>
+        <li><strong>INT:</strong> Um número inteiro de tamanho padrão.</li>
+        <li><strong>DECIMAL(M, N):</strong> Um número decimal fixo, útil para valores monetários, onde M é o número total de dígitos (precisão) e N é o número de dígitos após o ponto decimal (escala).</li>
+        <li><strong>FLOAT:</strong> Um número de ponto flutuante para armazenamento de números com frações.</li>
+    </ul>
+
+    <!-- Subseção Tipos de Data e Hora -->
+    <h3>Tipos de Data e Hora</h3>
+    <ul>
+        <li><strong>DATE:</strong> Uma data no formato AAAA-MM-DD.</li>
+        <li><strong>DATETIME:</strong> Data e hora combinadas no formato AAAA-MM-DD HH:MM:SS.</li>
+        <li><strong>TIMESTAMP:</strong> Uma marca temporal usada para registrar quando um evento ocorreu, no formato AAAA-MM-DD HH:MM:SS.</li>
+    </ul>
+
+    <!-- Subseção Tipos String -->
+    <h3>Tipos String</h3>
+    <ul>
+        <li><strong>VARCHAR(L):</strong> Uma string de comprimento variável, onde L é o tamanho máximo. Recomendado para texto de tamanho variável.</li>
+        <li><strong>CHAR(L):</strong> Uma string de comprimento fixo, onde L é o número de caracteres. Recomendado para textos de tamanho fixo, como códigos.</li>
+        <li><strong>TEXT:</strong> Para textos longos como artigos ou comentários.</li>
+    </ul>
+
+    <!-- Subseção Tipos Espaciais -->
+    <h3>Tipos Espaciais</h3>
+    <p>Utilizados para armazenar dados geográficos e espaciais, como pontos, linhas e polígonos, facilitando consultas baseadas em localização.</p>
+
+    <p>Escolher o tipo de dado apropriado não apenas afeta o desempenho do banco de dados, mas também como as consultas são realizadas e otimizadas. Portanto, é importante considerar o tipo de informação que cada coluna armazenará antes de definir seu tipo de dado.</p>
+</section>
+
+
+    <!-- Seção Índices -->
+    <section id="indices">
+        <h2>Índices</h2>
+        <p>Índices são usados para acelerar a pesquisa de dados em uma tabela. Eles são particularmente úteis em tabelas grandes.</p>
+        <h3>Exemplo de Criação de Índice</h3>
+        <code>CREATE INDEX idx_nome ON Clientes (Nome);</code>
+        <p>Este comando cria um índice chamado 'idx_nome' na coluna 'Nome' da tabela 'Clientes' para melhorar a eficiência das consultas.</p>
+    </section>
+
+    <!-- Seção Views -->
+    <section id="views">
+        <h2>Views</h2>
+        <p>Views são consultas armazenadas que você pode usar como se fossem tabelas. Elas são úteis para simplificar consultas complexas e garantir segurança de dados.</p>
+        <h3>Exemplo de Criação de View</h3>
+        <code>CREATE VIEW v_InfoClientes AS SELECT Nome, Email FROM Clientes;</code>
+        <p>Este comando cria uma view chamada 'v_InfoClientes' que mostra as colunas 'Nome' e 'Email' da tabela 'Clientes'.</p>
+    </section>
+
+    <!-- Seção Comandos -->
+    <section id="comandos">
+        <h2>ALTER TABLE</h2>
+        <p>Usado para adicionar, deletar, ou modificar colunas em uma tabela existente.</p>
+        <code>ALTER TABLE tabela ADD nova_coluna tipo_dado;</code>
+        <p>Este comando adiciona uma nova coluna à tabela especificada.</p>
+    </section>
+
+    <!-- Seção CREATE INDEX -->
+    <section >
+        <h2>CREATE INDEX</h2>
+        <p>Índices são usados para acelerar a pesquisa de dados em uma tabela. Eles são particularmente úteis em tabelas grandes.</p>
+        <code>CREATE INDEX idx_nome ON Clientes (Nome);</code>
+        <p>Este comando cria um índice chamado 'idx_nome' na coluna 'Nome' da tabela 'Clientes'.</p>
+    </section>
+
+    <!-- Seção CREATE TABLE -->
+    <section >
+        <h2>CREATE TABLE</h2>
+        <p>Cria uma nova tabela no banco de dados.</p>
+        <code>CREATE TABLE tabela (coluna1 tipo_dado1, coluna2 tipo_dado2, ...);</code>
+        <p>Este comando cria uma nova tabela com as colunas especificadas.</p>
+    </section>
+
+    <!-- Seção CREATE VIEW -->
+    <section >
+        <h2>CREATE VIEW</h2>
+        <p>Views são consultas armazenadas que você pode usar como se fossem tabelas. Elas são úteis para simplificar consultas complexas e garantir segurança de dados.</p>
+        <code>CREATE VIEW v_InfoClientes AS SELECT Nome, Email FROM Clientes;</code>
+        <p>Este comando cria uma view chamada 'v_InfoClientes' que mostra as colunas 'Nome' e 'Email' da tabela 'Clientes'.</p>
+    </section>
+
+    <!-- Seção DELETE -->
+    <section >
+        <h2>DELETE</h2>
+        <p>Remove dados de uma tabela.</p>
+        <code>DELETE FROM tabela WHERE condição;</code>
+        <p>Este comando remove dados da tabela que atendem à condição especificada.</p>
+    </section>
+
+    <!-- Seção GROUP BY -->
+    <section >
+        <h2>GROUP BY</h2>
+        <p>Agrupa linhas que têm os mesmos valores em colunas especificadas.</p>
+        <code>SELECT coluna, COUNT(*) FROM tabela GROUP BY coluna;</code>
+        <p>Este comando agrupa as linhas da tabela pela coluna especificada e conta o número de linhas em cada grupo.</p>
+    </section>
+
+    <!-- Seção HAVING -->
+    <section >
+        <h2>HAVING</h2>
+        <p>Usado para filtrar os resultados do grupo criado pelo comando GROUP BY.</p>
+        <code>SELECT coluna, COUNT(*) FROM tabela GROUP BY coluna HAVING COUNT(*) > 5;</code>
+        <p>Este comando filtra os grupos criados, mostrando apenas aqueles com mais de 5 registros.</p>
+    </section>
+
+    <!-- Seção INSERT -->
+    <section >
+        <h2>INSERT</h2>
+        <p>Insere novos dados em uma tabela.</p>
+        <code>INSERT INTO tabela (coluna1, coluna2) VALUES (valor1, valor2);</code>
+        <p>Este comando insere novos valores nas colunas especificadas da tabela.</p>
+    </section>
+
+    <!-- Seção JOIN -->
+    <section >
+        <h2>JOIN</h2>
+        <p>Usado para combinar linhas de duas ou mais tabelas, com base em uma coluna relacionada entre elas.</p>
+        <code>SELECT colunas FROM tabela1 JOIN tabela2 ON tabela1.coluna_comum = tabela2.coluna_comum;</code>
+        <p>Este comando mostra como combinar duas tabelas onde há valores correspondentes em uma coluna comum.</p>
+    </section>
+
+    <!-- Seção SELECT -->
+    <section >
+        <h2>SELECT</h2>
+        <p>Usado para selecionar dados de uma base de dados.</p>
+        <code>SELECT * FROM tabela;</code>
+        <p>Este comando seleciona todos os dados da tabela especificada.</p>
+    </section>
+    <!-- Seção LIKE -->
+<section id="like">
+    <h2>LIKE</h2>
+    <p>Usado para buscar dados que correspondam a um padrão especificado. É frequentemente utilizado em conjunto com wildcards (%) para filtrar resultados baseados em padrões de correspondência parcial.</p>
+    <code>SELECT * FROM tabela WHERE coluna LIKE '%padrao%';</code>
+    <p>Este comando busca por todos os registros na coluna especificada que contêm a palavra 'padrao' em qualquer posição.</p>
+</section>
+
+<!-- Seção IN -->
+<section id="in">
+    <h2>IN</h2>
+    <p>Permite especificar múltiplos valores em uma cláusula WHERE, facilitando a busca por registros que correspondam a qualquer um dos valores listados.</p>
+    <code>SELECT * FROM tabela WHERE coluna IN (valor1, valor2, valor3);</code>
+    <p>Este comando seleciona registros onde a coluna tem um dos valores especificados.</p>
+</section>
+
+<!-- Seção BETWEEN -->
+<section id="between">
+    <h2>BETWEEN</h2>
+    <p>Usado para selecionar valores dentro de um intervalo definido, inclusive os valores inicial e final especificados.</p>
+    <code>SELECT * FROM tabela WHERE coluna BETWEEN valor_inicial AND valor_final;</code>
+    <p>Este comando seleciona todos os registros onde a coluna tem um valor entre 'valor_inicial' e 'valor_final'.</p>
+</section>
+
+<!-- Seção Wildcards -->
+<section id="wildcards">
+    <h2>Wildcards</h2>
+    <p>Caracteres especiais usados com o comando LIKE para realizar buscas flexíveis em strings. Os mais comuns são o percentual (%) para qualquer sequência de caracteres e o sublinhado (_) para um único caractere.</p>
+    <h3>Exemplo com %</h3>
+    <code>SELECT * FROM tabela WHERE coluna LIKE 'texto%';</code>
+    <p>Busca registros onde a coluna começa com 'texto' e é seguida por qualquer sequência de caracteres.</p>
+    <h3>Exemplo com _</h3>
+    <code>SELECT * FROM tabela WHERE coluna LIKE 'texto_';</code>
+    <p>Busca registros onde a coluna começa com 'texto' e é seguido por exatamente um caractere adicional.</p>
+</section>
+
+
+    <!-- Seção UPDATE -->
+    <section >
+        <h2>UPDATE</h2>
+        <p>Atualiza dados existentes em uma tabela.</p>
+        <code>UPDATE tabela SET coluna1 = valor1 WHERE condição;</code>
+        <p>Este comando atualiza os valores na coluna especificada, baseado na condição fornecida.</p>
+    </section>
+
+    <!-- Adicione mais seções conforme necessário para outros comandos SQL -->
+    <!-- Seção ALTER DATABASE -->
+<section >
+    <h2>ALTER DATABASE</h2>
+    <p>Usado para modificar um banco de dados existente.</p>
+    <code>ALTER DATABASE nome_database MODIFY NAME = novo_nome_database;</code>
+    <p>Este comando modifica o nome do banco de dados especificado.</p>
+</section>
+
+<!-- Seção CREATE DATABASE -->
+<section >
+    <h2>CREATE DATABASE</h2>
+    <p>Cria um novo banco de dados.</p>
+    <code>CREATE DATABASE nome_database;</code>
+    <p>Este comando cria um novo banco de dados com o nome especificado.</p>
+</section>
+
+<!-- Seção DROP TABLE -->
+<section >
+    <h2>DROP TABLE</h2>
+    <p>Remove uma tabela do banco de dados.</p>
+    <code>DROP TABLE nome_tabela;</code>
+    <p>Este comando remove a tabela especificada e todos os seus dados do banco de dados.</p>
+</section>
+
+<!-- Seção TRUNCATE TABLE -->
+<section >
+    <h2>TRUNCATE TABLE</h2>
+    <p>Remove todos os registros de uma tabela sem deletar a tabela em si.</p>
+    <code>TRUNCATE TABLE nome_tabela;</code>
+    <p>Este comando remove rapidamente todos os dados de uma tabela, mantendo sua estrutura para uso futuro.</p>
+</section>
+
+<!-- Seção COMMIT -->
+<section >
+    <h2>COMMIT</h2>
+    <p>Finaliza uma transação, salvando todas as mudanças feitas.</p>
+    <code>COMMIT;</code>
+    <p>Este comando salva todas as modificações realizadas durante a transação atual.</p>
+</section>
+
+<!-- Seção ROLLBACK -->
+<section >
+    <h2>ROLLBACK</h2>
+    <p>Desfaz todas as mudanças feitas na transação atual.</p>
+    <code>ROLLBACK;</code>
+    <p>Este comando desfaz todas as modificações realizadas, revertendo o banco de dados ao estado anterior ao início da transação.</p>
+</section>
+
+<!-- Seção SAVEPOINT -->
+<section >
+    <h2>SAVEPOINT</h2>
+    <p>Cria um ponto no qual você pode fazer um ROLLBACK mais tarde.</p>
+    <code>SAVEPOINT nome_savepoint;</code>
+    <p>Este comando cria um ponto de salvamento dentro de uma transação, permitindo o ROLLBACK para esse ponto específico sem desfazer toda a transação.</p>
+</section>
+
+<!-- Seção LOCK TABLE -->
+<section >
+    <h2>LOCK TABLE</h2>
+    <p>Bloqueia a tabela especificada para evitar que outros usuários a modifiquem.</p>
+    <code>LOCK TABLE nome_tabela IN EXCLUSIVE MODE;</code>
+    <p>Este comando bloqueia a tabela, permitindo apenas que o usuário atual faça modificações.</p>
+</section>
+<section id="joins">
+    <h2>JOIN</h2>
+    <p>JOINs são usados para combinar linhas de duas ou mais tabelas, baseadas em uma coluna relacionada entre elas. Existem vários tipos de JOINS, cada um com um propósito específico.</p>
+    
+    <!-- INNER JOIN -->
+    <h3>INNER JOIN</h3>
+    <p>Combina linhas de duas tabelas quando há uma correspondência nas colunas especificadas.</p>
+    <img src="inner_join.png" alt="Exemplo de INNER JOIN">
+    <code>SELECT * FROM tabela1 INNER JOIN tabela2 ON tabela1.coluna_comum = tabela2.coluna_comum;</code>
+    
+    <!-- LEFT JOIN -->
+    <h3>LEFT JOIN</h3>
+    <p>Inclui todas as linhas da tabela à esquerda e as linhas correspondentes da tabela à direita.</p>
+    <img src="left_join.png" alt="Exemplo de LEFT JOIN">
+    <code>SELECT * FROM tabela1 LEFT JOIN tabela2 ON tabela1.coluna_comum = tabela2.coluna_comum;</code>
+    
+    <!-- RIGHT JOIN -->
+    <h3>RIGHT JOIN</h3>
+    <p>Inclui todas as linhas da tabela à direita e as linhas correspondentes da tabela à esquerda.</p>
+    <img src="right_join.png" alt="Exemplo de RIGHT JOIN">
+    <code>SELECT * FROM tabela1 RIGHT JOIN tabela2 ON tabela1.coluna_comum = tabela2.coluna_comum;</code>
+    
+    <!-- FULL JOIN -->
+    <h3>FULL JOIN</h3>
+    <p>Combina todas as linhas de ambas as tabelas, independentemente de haver uma correspondência.</p>
+    <img src="full_join.png" alt="Exemplo de FULL JOIN">
+    <code>SELECT * FROM tabela1 FULL JOIN tabela2 ON tabela1.coluna_comum = tabela2.coluna_comum;</code>
+</section>
+
+</body>
+</html>
+
+<script>
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+    
+        var targetId = this.getAttribute('href');
+        var targetPosition = document.querySelector(targetId).offsetTop;
+        var headerHeight = 120; // Height of your header
+    
+        window.scrollTo({
+          top: targetPosition - headerHeight,
+          behavior: 'smooth'
+        });
+      });
+    });
+</script>
